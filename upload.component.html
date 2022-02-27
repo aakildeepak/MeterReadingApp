@@ -1,0 +1,39 @@
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <button id="fileUpload"
+                        mat-raised-button
+                        class="mat-raised"
+                        (click)="inputFileTarget.click()">
+                    Select file to upload<i class="fa fa-folder-open-o m-l-10"></i>
+                </button>
+                <input #inputFileTarget
+                       mat-button
+                       style="width: 75%; visibility: hidden"
+                       id="file"
+                       type="file"
+                       (change)="updated($event)" />
+            </td>
+        </tr>
+        <tr *ngIf="fileToUpload">
+            <td>
+                <label>Selected File: {{fileToUpload.name}}</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button mat-raised-button
+                        [disabled]="!fileSelected()"
+                        (click)="upload()"
+                        id="upload">Upload
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="success">
+            <p>Result:</p>
+            <span><strong>Success count: {{uploadResult.successCount}}</strong></span>
+            <span><strong>Failure count: {{uploadResult.failureCount}}</strong></span>
+        </tr>               
+    </tbody>
+</table>
